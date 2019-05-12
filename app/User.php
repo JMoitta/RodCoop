@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+    const ROLE_USER = 1;
+    const ROLE_ADMIN = 2;
+    const ROLE_ROOT = 3;
 
     /**
      * The attributes that are mass assignable.

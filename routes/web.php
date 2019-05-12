@@ -17,4 +17,10 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+Route::prefix('admin')->middleware(['auth', 'can:admin'])->group(function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+});
+
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');

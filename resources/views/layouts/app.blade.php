@@ -33,7 +33,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @can('admin', App\User::class)
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Administrative regions') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Houses of prayer') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Cooperators') }}</a></li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -59,7 +59,7 @@ class AdministrativeRegionController extends Controller
      */
     public function create()
     {
-        
+
         return view('admin.administrative-regions.create');
     }
 
@@ -71,7 +71,8 @@ class AdministrativeRegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        AdministrativeRegion::create($request->all());
+        return redirect()->route('admin.administrative-regions.index');
     }
 
     /**

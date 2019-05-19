@@ -59,7 +59,8 @@ class AdministrativeRegionController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.administrative-regions.create');
     }
 
     /**

@@ -17,10 +17,13 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::prefix('admin')->middleware(['auth', 'can:admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 'can:admin'])->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
+    Route::resources([
+        'administrative-regions' => 'AdministrativeRegionController',
+    ]);
 });
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');

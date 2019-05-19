@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @can('admin', App\User::class)
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Administrative regions') }}</a></li>
+                        <li><a class="nav-link" href="{{ route('admin.administrative-regions.index') }}">{{ __('Administrative regions') }}</a></li>
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Houses of prayer') }}</a></li>
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Cooperators') }}</a></li>
                         @endcan

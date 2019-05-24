@@ -117,12 +117,12 @@ class AdministrativeRegionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Model\AdministrativeRegion $administrativeRegion
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(AdministrativeRegion $administrativeRegion)
     {
-        //
+        return view('admin.administrative-regions.edit', compact('administrativeRegion'));
     }
 
     /**

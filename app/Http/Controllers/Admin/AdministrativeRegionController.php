@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreAdministrativeRegion;
+use App\Http\Requests\UpdateAdministrativeRegion;
 use App\Model\AdministrativeRegion;
 use App\Table\Table;
 use App\Show\Show;
@@ -128,13 +129,15 @@ class AdministrativeRegionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateAdministrativeRegion  $request
+     * @param  \App\Model\AdministrativeRegion $administrativeRegion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAdministrativeRegion  $request, AdministrativeRegion $administrativeRegion)
     {
-        //
+        $administrativeRegion->fill($request->all());
+        $administrativeRegion->save();
+        return redirect()->route('admin.administrative-regions.index');
     }
 
     /**

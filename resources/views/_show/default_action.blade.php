@@ -1,0 +1,1 @@
+<a href="{{ route($action['route'],[$model->getKey()]) }}" class="btn {{ $action['class']}}">{{$action['label']}}</a>

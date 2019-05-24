@@ -59,7 +59,12 @@ class Table
     }
     public function addEditAction($route, $template = null)
     {
-        $this->addAction('Editar', $route, $template ? $template : 'table.edit_action');
+        $this->addAction('Editar', $route, $template ? $template : 'table.default_action');
+        return $this;
+    }
+    public function addShowAction($route, $template = null)
+    {
+        $this->addAction('Ver', $route, $template ? $template : 'table.default_action');
         return $this;
     }
     public function addDeleteAction($route, $template = null)

@@ -150,6 +150,5 @@ class AdministrativeRegionController extends Controller
     {
         $administrativeRegion->delete();
         return redirect()->route('admin.administrative-regions.index');
-        
     }
 }

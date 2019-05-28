@@ -13,7 +13,7 @@
                             value="{{\Request::get('search')}}">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Pesquisar</button>
+            <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
         </form>
     </div>
     @if(count($table->rows()))

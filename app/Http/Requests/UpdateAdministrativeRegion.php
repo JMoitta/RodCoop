@@ -23,8 +23,12 @@ class UpdateAdministrativeRegion extends FormRequest
      */
     public function rules()
     {
+        $administrativeRegion = request('administrative_region');
+
+        
+        $id = $administrativeRegion->id;
         return [
-            'description' => 'required|unique:administrative_regions|max:255',
+            'description' => "required|unique:administrative_regions,description,$id,id|max:255", 
         ];
     }
 }

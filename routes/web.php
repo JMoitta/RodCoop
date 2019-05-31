@@ -24,6 +24,9 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 
     Route::resources([
         'administrative-regions' => 'AdministrativeRegionController',
     ]);
+    Route::resources([
+        'cooperators' => 'CooperatorController',
+    ]);
 });
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');

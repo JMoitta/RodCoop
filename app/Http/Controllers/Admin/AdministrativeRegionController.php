@@ -13,23 +13,6 @@ use App\Http\Controllers\Controller;
 class AdministrativeRegionController extends Controller
 {
     /**
-     * @var Table
-     */
-    private $table;
-    /**
-     * @var Show
-     */
-    private $show;
-    /**
-     * CategoriesController constructor.
-     */
-    public function __construct(Table $table, Show $show)
-    {
-        $this->table = $table;
-        $this->show = $show;
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -37,33 +20,33 @@ class AdministrativeRegionController extends Controller
     public function index()
     {
         $this->table
-        ->model(AdministrativeRegion::class)
-        ->columns([
-            [
-                'label' => 'ID',
-                'name' => 'id',
-                'order' => true //true, asc ou desc
-            ],
-            [
-                'label' => 'Descrição',
-                'name' => 'description',
-                'order' => true //true, asc ou desc
-            ]
-        ])
-        ->filters([
-            [
-                'name' => 'description',
-                'operator' => 'LIKE'
-            ]
-        ])
-        ->addEditAction('admin.administrative-regions.edit')
-        ->addShowAction('admin.administrative-regions.show')
-        //->addDeleteAction('admin.administrative-regions.destroy')
-        ->paginate(5)
-        ->search();
-    return view('admin.administrative-regions.index',[
-        'table' => $this->table
-    ]);
+            ->model(AdministrativeRegion::class)
+            ->columns([
+                [
+                    'label' => 'ID',
+                    'name' => 'id',
+                    'order' => true //true, asc ou desc
+                ],
+                [
+                    'label' => 'Descrição',
+                    'name' => 'description',
+                    'order' => true //true, asc ou desc
+                ]
+            ])
+            ->filters([
+                [
+                    'name' => 'description',
+                    'operator' => 'LIKE'
+                ]
+            ])
+            ->addEditAction('admin.administrative-regions.edit')
+            ->addShowAction('admin.administrative-regions.show')
+            //->addDeleteAction('admin.administrative-regions.destroy')
+            ->paginate(5)
+            ->search();
+        return view('admin.administrative-regions.index',[
+            'table' => $this->table
+        ]);
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreAdministrativeRegion;
 use App\Http\Requests\UpdateAdministrativeRegion;
-use App\Model\AdministrativeRegion;
+use App\Models\AdministrativeRegion;
 use App\Table\Table;
 use App\Show\Show;
 use Illuminate\Http\Request;
@@ -74,7 +74,7 @@ class AdministrativeRegionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\AdministrativeRegion  $administrativeRegion
+     * @param  \App\Models\AdministrativeRegion  $administrativeRegion
      * @return \Illuminate\Http\Response
      */
     public function show(AdministrativeRegion $administrativeRegion)
@@ -101,7 +101,7 @@ class AdministrativeRegionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\AdministrativeRegion $administrativeRegion
+     * @param  \App\Models\AdministrativeRegion $administrativeRegion
      * @return \Illuminate\Http\Response
      */
     public function edit(AdministrativeRegion $administrativeRegion)
@@ -113,7 +113,7 @@ class AdministrativeRegionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateAdministrativeRegion  $request
-     * @param  \App\Model\AdministrativeRegion $administrativeRegion
+     * @param  \App\Models\AdministrativeRegion $administrativeRegion
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateAdministrativeRegion  $request, AdministrativeRegion $administrativeRegion)
@@ -126,7 +126,7 @@ class AdministrativeRegionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\AdministrativeRegion $administrativeRegion
+     * @param  \App\Models\AdministrativeRegion $administrativeRegion
      * @return \Illuminate\Http\Response
      */
     public function destroy(AdministrativeRegion $administrativeRegion)

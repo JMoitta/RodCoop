@@ -12,7 +12,7 @@ class AdministrativeRegionsTableSeeder extends Seeder
     public function run()
     {
         $id = 1;
-        $listAdministrativeRegion = factory(App\Model\AdministrativeRegion::class, 7)->make();
+        $listAdministrativeRegion = factory(App\Models\AdministrativeRegion::class, 7)->make();
         foreach( $listAdministrativeRegion as $administrativeRegion){
             $administrativeRegion->description = $administrativeRegion->description . $id;
             $id = $id + 1;

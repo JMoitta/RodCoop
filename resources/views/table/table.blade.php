@@ -1,21 +1,15 @@
-<div class="row">
-    <div class="col">
-        <form action="{{url()->current()}}" method="GET" class="form-inline mb-2">
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Buscar</span>
-                    </div>
-                    <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </div>
-                    <input type="text" class="form-control" name="search" placeholder="Pesquisar"
-                            value="{{\Request::get('search')}}">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary ml-2">Pesquisar</button>
-        </form>
+<form action="{{url()->current()}}" method="GET" class="mb-2">
+    <div class="form-row">
+        @section('searchForm')
+        @show
     </div>
+    <div class="row">
+        <div class="col-md-auto mx-auto">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </div>
+    </div>
+</form>
+<div class="row">
     @if(count($table->rows()))
         <div class="col">
             <div class="float-right">

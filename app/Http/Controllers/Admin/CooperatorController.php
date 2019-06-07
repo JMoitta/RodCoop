@@ -132,6 +132,7 @@ class CooperatorController extends Controller
      */
     public function destroy(Cooperator $cooperator)
     {
-        //
+        $cooperator->delete();
+        return redirect()->route('admin.cooperators.index');
     }
 }

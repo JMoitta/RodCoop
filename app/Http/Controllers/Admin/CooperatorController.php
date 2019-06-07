@@ -43,11 +43,8 @@ class CooperatorController extends Controller
             //->addDeleteAction('admin.administrative-regions.destroy')
             ->paginate(5)
             ->search();
-        $listAdministrativeRegion = AdministrativeRegion::pluck('description', 'id');
         return view('admin.cooperators.index',[
             'table' => $this->table,
-            'search' => $this->table->model(),
-            'listAdministrativeRegion' => $listAdministrativeRegion,
         ]);
     }
 

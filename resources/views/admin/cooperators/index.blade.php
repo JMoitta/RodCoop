@@ -5,8 +5,5 @@
         <h3>{{ __('List of Cooperators') }}</h3>
         <a class="btn btn-outline-primary ml-2" href="{{ route('admin.cooperators.create') }}">{{ __('Create new') }}</a>
     </div>
-    @section('searchForm')
-        @include('admin.cooperators._form')
-    @endsection
     @include('table.table')
 @endsection

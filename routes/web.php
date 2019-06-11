@@ -21,11 +21,17 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 
     Route::get('/', function () {
         return view('admin.index');
     });
+    
     Route::resources([
         'administrative-regions' => 'AdministrativeRegionController',
     ]);
+    
     Route::resources([
         'cooperators' => 'CooperatorController',
+    ]);
+
+    Route::resources([
+        'houses-of-prayer' => 'PrayingHouseController',
     ]);
 });
 

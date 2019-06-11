@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use \App\Models\PrayingHouse;
+use \App\Models\AdministrativeRegion;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -27,7 +28,8 @@ class PrayingHouseController extends Controller
      */
     public function create()
     {
-        //
+        $listAdministrativeRegion = AdministrativeRegion::pluck('description', 'id');
+        return view('admin.houses-of-prayer.create', compact('listAdministrativeRegion'));
     }
 
     /**

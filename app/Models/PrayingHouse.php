@@ -14,4 +14,9 @@ class PrayingHouse extends Model
     protected $fillable = [
         'locality', 'saturday', 'saturdayHours', 'sunday', 'sundayHours', 'address', 'cooperator_craft_id', 'administrative_region_id'
     ];
+
+    public function administrativeRegion()
+    {
+        return $this->belongsTo(AdministrativeRegion::class);
+    }
 }

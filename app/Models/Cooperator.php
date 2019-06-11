@@ -15,6 +15,7 @@ class Cooperator extends Model
     protected $fillable = [
         'name', 'administrative_region_id'
     ];
+    
     public function administrativeRegion()
     {
         return $this->hasOne(AdministrativeRegion::class);

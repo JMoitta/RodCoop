@@ -1,5 +1,6 @@
 {
   "A fresh verification link has been sent to your email address.": "Um novo link de verificação foi enviado para seu endereço de e-mail.",
+  "Address": "Endereço",
   "Administrative region": "Região administrativa",
   "Administrative regions": "Regiões administrativas",
   "All rights reserved.": "Todos os direitos reservados.",
@@ -46,6 +47,7 @@
   "Remember Me": "Lembre-se de mim",
   "Reset Password": "Redefinir senha",
   "Reset Password Notification": "Notificação de redefinição de senha",
+  "Saturday at 7:30 p.m.": "Sábado às 19:30",
   "Send Password Reset Link": "Link de redefinição de senha enviado",
   "Service Unavailable": "Serviço indisponível",
   "Show administrative region": "Mostrar região administrativa",
@@ -56,6 +58,7 @@
   "Sorry, you are not authorized to access this page.": "Desculpe, você não está autorizado a acessar esta página.",
   "Sorry, your session has expired. Please refresh and try again.": "Desculpe, sua sessão expirou. Por favor, atualize e tente novamente.",
   "Sorry, we are doing some maintenance. Please check back soon.": "Desculpe, estamos fazendo algumas manutenções. Por favor, volte em breve.",
+  "Sunday at 7:30 p.m.": "Domingo às 19:30",
   "This password reset link will expire in :count minutes." : "O Link de redefinição de senha irá expirar em :count minutos.",
   "Submit": "Enviar",
   "To Save": "Salvar",
@@ -66,6 +69,7 @@
   "Verify Your Email Address": "Verifique seu endereço de e-mail",
   "You are receiving this email because we received a password reset request for your account.": "Você recebeu esse e-mail porque foi solicitado uma redefinição de senha na sua conta.",
   "Warning": "Aviso",
+  "Weekend cults": "Cultos de fim de semana",
   "Whoops!": "Ops!",
   "Whoops, something went wrong on our servers.": "Ops, algo deu errado em nossos servidores."
 }

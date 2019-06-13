@@ -36,6 +36,7 @@
                 <th>ID</th>
                 <th>{{ __('Locality') }}</th>
                 <th>{{ __('Administrative region') }}</th>
+                <th>{{ __('Weekend cults') }}</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -45,6 +46,18 @@
                     <td>{{ $prayingHouse->id }}</td>
                     <td>{{ $prayingHouse->locality }}</td>
                     <td>{{ $prayingHouse->administrativeRegion->description }}</td>
+                    <td>
+                        @php
+                          $weekendCults = [];
+                          if($prayingHouse->saturday){
+                            array_push($weekendCults, __('Saturday'));
+                          }
+                          if($prayingHouse->sunday){
+                            array_push($weekendCults, __('Sunday'));
+                          }
+                          print(implode(", ", $weekendCults));
+                        @endphp
+                    </td>
                     <td>
                         <a href="{{ route('admin.houses-of-prayer.edit', $prayingHouse->id)}}">{{ __('Edit') }}</a> |
                         <a href="{{ route('admin.houses-of-prayer.show', $prayingHouse->id)}}">{{ __('Show') }}</a>

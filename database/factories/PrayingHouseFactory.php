@@ -12,15 +12,20 @@ $factory->define(PrayingHouse::class, function (Faker $faker) {
     ];
     if(rand(1, 2) == 1){
         $data['saturday'] = true;
-        $data['saturdayHours'] = Carbon\Carbon::createFromTime(19, 30);
     } else {
         $data['saturday'] = false;
     }
     if(rand(1, 2) == 1){
         $data['sunday'] = true;
-        $data['sundayHours'] = Carbon\Carbon::createFromTime(19, 30);
     } else {
         $data['sunday'] = false;
+    }
+    if(!$data['sunday'] && !$data['saturday']){
+        if(rand(1, 2) == 1){
+            $data['sunday'] = true;
+        } else {
+            $data['saturday'] = true;
+        }
     }
     return $data;
 });

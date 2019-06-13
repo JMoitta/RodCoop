@@ -12,7 +12,7 @@ class PrayingHouse extends Model
      * @var array
      */
     protected $fillable = [
-        'locality', 'saturday', 'saturdayHours', 'sunday', 'sundayHours', 'address', 'cooperator_craft_id', 'administrative_region_id'
+        'locality', 'saturday', 'sunday', 'address', 'cooperator_craft_id', 'administrative_region_id'
     ];
 
     public function administrativeRegion()

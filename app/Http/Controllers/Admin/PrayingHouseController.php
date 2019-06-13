@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use \App\Models\PrayingHouse;
 use \App\Models\AdministrativeRegion;
+use \App\Models\Cooperator;
+use \App\Models\PrayingHouse;
+
+use \App\Http\Requests\PrayingHouse\StorePrayingHouse;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -29,18 +32,20 @@ class PrayingHouseController extends Controller
     public function create()
     {
         $listAdministrativeRegion = AdministrativeRegion::pluck('description', 'id');
-        return view('admin.houses-of-prayer.create', compact('listAdministrativeRegion'));
+        $listCooperator = Cooperator::pluck('name', 'id');
+        return view('admin.houses-of-prayer.create', compact('listAdministrativeRegion', 'listCooperator'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PrayingHouse\StorePrayingHouse  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePrayingHouse $request)
     {
-        //
+        PrayingHouse::create($request->all());
+        return redirect()->route('admin.cooperators.index');
     }
 
     /**

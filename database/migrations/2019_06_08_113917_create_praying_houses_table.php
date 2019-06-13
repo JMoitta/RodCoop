@@ -17,9 +17,7 @@ class CreatePrayingHousesTable extends Migration
             $table->bigIncrements('id');
             $table->string('locality');
             $table->boolean('saturday');
-            $table->time('saturdayHours')->nullable();
             $table->boolean('sunday');
-            $table->time('sundayHours')->nullable();
             $table->string('address');
             $table->bigInteger('cooperator_craft_id')->unsigned();
             $table->foreign('cooperator_craft_id')->references('id')->on('cooperators');

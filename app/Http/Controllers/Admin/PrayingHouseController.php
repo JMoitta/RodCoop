@@ -67,7 +67,9 @@ class PrayingHouseController extends Controller
      */
     public function edit(PrayingHouse $prayingHouse)
     {
-        //
+        $listAdministrativeRegion = AdministrativeRegion::pluck('description', 'id');
+        $listCooperator = Cooperator::pluck('name', 'id');
+        return view('admin.houses-of-prayer.edit', compact('prayingHouse', 'listAdministrativeRegion', 'listCooperator'));
     }
 
     /**

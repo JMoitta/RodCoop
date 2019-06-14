@@ -51,12 +51,12 @@ class PrayingHouseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PrayingHouse  $prayingHouse
+     * @param  \App\Models\PrayingHouse  $prayingHouse
      * @return \Illuminate\Http\Response
      */
     public function show(PrayingHouse $prayingHouse)
     {
-        //
+        return view('admin.houses-of-prayer.show', compact('prayingHouse'));
     }
 
     /**

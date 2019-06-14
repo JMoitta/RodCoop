@@ -31,7 +31,7 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 
     ]);
 
     Route::resources([
-        'houses-of-prayer' => 'PrayingHouseController',
+        'praying-houses' => 'PrayingHouseController',
     ]);
 });
 

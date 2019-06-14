@@ -3,7 +3,7 @@
 @section('content')
     <div class="row col mb-2">
         <h3>{{ __('List of Prayer Houses') }}</h3>
-        <a class="btn btn-outline-primary ml-2" href="{{ route('admin.houses-of-prayer.create') }}">{{ __('Create new') }}</a>
+        <a class="btn btn-outline-primary ml-2" href="{{ route('admin.praying-houses.create') }}">{{ __('Create new') }}</a>
     </div>
     <form action="{{url()->current()}}" method="GET" class="form-inline mb-2">
         <div class="form-group">
@@ -59,8 +59,8 @@
                         @endphp
                     </td>
                     <td>
-                        <a href="{{ route('admin.houses-of-prayer.edit', $prayingHouse->id)}}">{{ __('Edit') }}</a> |
-                        <a href="{{ route('admin.houses-of-prayer.show', $prayingHouse->id)}}">{{ __('Show') }}</a>
+                        <a href="{{ route('admin.praying-houses.edit', $prayingHouse->id)}}">{{ __('Edit') }}</a> |
+                        <a href="{{ route('admin.praying-houses.show', $prayingHouse->id)}}">{{ __('Show') }}</a>
                     </td>
                 </tr>
             @endforeach

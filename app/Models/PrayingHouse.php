@@ -19,4 +19,9 @@ class PrayingHouse extends Model
     {
         return $this->belongsTo(AdministrativeRegion::class);
     }
+
+    public function cooperatorCraft()
+    {
+        return $this->belongsTo(Cooperator::class);
+    }
 }

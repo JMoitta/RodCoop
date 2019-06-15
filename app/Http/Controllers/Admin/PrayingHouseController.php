@@ -45,7 +45,7 @@ class PrayingHouseController extends Controller
     public function store(StorePrayingHouse $request)
     {
         PrayingHouse::create($request->all());
-        return redirect()->route('admin.cooperators.index');
+        return redirect()->route('admin.houses-of-prayer.index');
     }
 
     /**
@@ -75,13 +75,15 @@ class PrayingHouseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PrayingHouse\StorePrayingHouse  $request
      * @param  \App\PrayingHouse  $prayingHouse
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PrayingHouse $prayingHouse)
+    public function update(StorePrayingHouse $request, PrayingHouse $prayingHouse)
     {
-        //
+        $prayingHouse->fill($request->all());
+        $prayingHouse->save();
+        return redirect()->route('admin.praying-houses.index');
     }
 
     /**
@@ -92,6 +94,7 @@ class PrayingHouseController extends Controller
      */
     public function destroy(PrayingHouse $prayingHouse)
     {
-        //
+        $prayingHouse->delete();
+        return redirect()->route('admin.praying-houses.index');
     }
 }

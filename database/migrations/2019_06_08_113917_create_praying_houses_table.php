@@ -16,8 +16,8 @@ class CreatePrayingHousesTable extends Migration
         Schema::create('praying_houses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('locality');
-            $table->boolean('saturday');
-            $table->boolean('sunday');
+            $table->boolean('saturday')->default(false);
+            $table->boolean('sunday')->default(false);
             $table->string('address');
             $table->bigInteger('cooperator_craft_id')->unsigned();
             $table->foreign('cooperator_craft_id')->references('id')->on('cooperators');

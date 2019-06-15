@@ -53,23 +53,7 @@ class AdministrativeRegionController extends Controller
      */
     public function show(AdministrativeRegion $administrativeRegion)
     {
-        $this->show
-            ->model($administrativeRegion)
-            ->attributes([
-                [
-                    'label' => 'Identificador',
-                    'name' => 'id',
-                ],
-                [
-                    'label' => 'Descrição',
-                    'name' => 'description',
-                ]
-            ])
-            ->addEditAction('admin.administrative-regions.edit', ['administrative_region' => $administrativeRegion->id])
-            ->addDeleteAction('admin.administrative-regions.destroy', ['administrative_region' => $administrativeRegion->id]);
-        return view('admin.administrative-regions.show', [
-            'show' => $this->show,
-        ]);
+        return view('admin.administrative-regions.show', compact('administrativeRegion'));
     }
 
     /**

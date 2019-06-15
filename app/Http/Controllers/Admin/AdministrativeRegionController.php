@@ -19,34 +19,8 @@ class AdministrativeRegionController extends Controller
      */
     public function index()
     {
-        $this->table
-            ->model(AdministrativeRegion::class)
-            ->columns([
-                [
-                    'label' => 'ID',
-                    'name' => 'id',
-                    'order' => true //true, asc ou desc
-                ],
-                [
-                    'label' => 'Descrição',
-                    'name' => 'description',
-                    'order' => true //true, asc ou desc
-                ]
-            ])
-            ->filters([
-                [
-                    'name' => 'description',
-                    'operator' => 'LIKE'
-                ]
-            ])
-            ->addEditAction('admin.administrative-regions.edit')
-            ->addShowAction('admin.administrative-regions.show')
-            //->addDeleteAction('admin.administrative-regions.destroy')
-            ->paginate(5)
-            ->search();
-        return view('admin.administrative-regions.index',[
-            'table' => $this->table
-        ]);
+        $listAdministrativeRegions = AdministrativeRegion::paginate(5);
+        return view('admin.administrative-regions.index', \compact('listAdministrativeRegions'));
     }
 
     /**

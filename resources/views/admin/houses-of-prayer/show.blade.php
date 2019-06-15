@@ -7,15 +7,20 @@
             <a href="{{ route('admin.praying-houses.edit', [$prayingHouse->id]) }}" class="btn btn-primary">Editar</a>
         </div>
         <div class="btn-group mr-2">
-            <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-danger">
-            Excluir
-            </button>
+            @include('_show.delete_action',[
+                'model' => $prayingHouse,
+                'action' => [
+                    'class' => 'btn-danger',
+                    'route' => 'admin.praying-houses.destroy',
+                    'parameters' => $prayingHouse->id,
+                    'label' => __('Delete'),
+                ],
+                'index' => $prayingHouse->id,
+            ])
         </div>
     </div>
-    <form id="formDelete1" action="{{ route('admin.praying-houses.destroy', [$prayingHouse->id]) }}" method="POST">
-        @csrf
-        @method('DELETE')
-    </form>
+    @section('formAction')
+    @show
     <table class="table table-bordered">
         <tbody>
             <tr>

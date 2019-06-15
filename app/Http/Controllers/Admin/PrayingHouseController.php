@@ -21,7 +21,7 @@ class PrayingHouseController extends Controller
     public function index()
     {
         $listPrayerOfHouses = PrayingHouse::paginate(5);
-        return view('admin.houses-of-prayer.index', \compact('listPrayerOfHouses'));
+        return view('admin.praying-houses.index', \compact('listPrayerOfHouses'));
     }
 
     /**
@@ -33,7 +33,7 @@ class PrayingHouseController extends Controller
     {
         $listAdministrativeRegion = AdministrativeRegion::pluck('description', 'id');
         $listCooperator = Cooperator::pluck('name', 'id');
-        return view('admin.houses-of-prayer.create', compact('listAdministrativeRegion', 'listCooperator'));
+        return view('admin.praying-houses.create', compact('listAdministrativeRegion', 'listCooperator'));
     }
 
     /**
@@ -45,7 +45,7 @@ class PrayingHouseController extends Controller
     public function store(StorePrayingHouse $request)
     {
         PrayingHouse::create($request->all());
-        return redirect()->route('admin.houses-of-prayer.index');
+        return redirect()->route('admin.praying-houses.index');
     }
 
     /**
@@ -56,7 +56,7 @@ class PrayingHouseController extends Controller
      */
     public function show(PrayingHouse $prayingHouse)
     {
-        return view('admin.houses-of-prayer.show', compact('prayingHouse'));
+        return view('admin.praying-houses.show', compact('prayingHouse'));
     }
 
     /**
@@ -69,7 +69,7 @@ class PrayingHouseController extends Controller
     {
         $listAdministrativeRegion = AdministrativeRegion::pluck('description', 'id');
         $listCooperator = Cooperator::pluck('name', 'id');
-        return view('admin.houses-of-prayer.edit', compact('prayingHouse', 'listAdministrativeRegion', 'listCooperator'));
+        return view('admin.praying-houses.edit', compact('prayingHouse', 'listAdministrativeRegion', 'listCooperator'));
     }
 
     /**

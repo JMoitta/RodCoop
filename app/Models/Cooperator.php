@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\AdministrativeRegion;
+use App\Models\PrayingHouse;
 use Illuminate\Database\Eloquent\Model;
 
 class Cooperator extends Model
@@ -18,6 +19,10 @@ class Cooperator extends Model
     
     public function administrativeRegion()
     {
-        return $this->hasOne(AdministrativeRegion::class);
+        return $this->belongsTo(AdministrativeRegion::class);
+    }
+    public function prayingHouse()
+    {
+        return $this->hasOne(PrayingHouse::class, 'cooperator_craft_id', 'id');
     }
 }

@@ -25,8 +25,8 @@ class StorePrayingHouse extends FormRequest
     {
         return [
             'locality'                 => 'required|max:255',
-            'saturday'                 => 'required|boolean',
-            'sunday'                   => 'required|boolean',
+            'saturday'                 => 'boolean',
+            'sunday'                   => 'boolean',
             'address'                  => 'required|max:255',
             'cooperator_craft_id'      => 'required|exists:cooperators,id',
             'administrative_region_id' => 'required|exists:administrative_regions,id'

@@ -18,34 +18,8 @@ class CooperatorController extends Controller
      */
     public function index()
     {
-        $this->table
-            ->model(Cooperator::class)
-            ->columns([
-                [
-                    'label' => 'ID',
-                    'name' => 'id',
-                    'order' => true //true, asc ou desc
-                ],
-                [
-                    'label' => 'Nome',
-                    'name' => 'name',
-                    'order' => true //true, asc ou desc
-                ],
-            ])
-            ->filters([
-                [
-                    'name' => 'name',
-                    'operator' => 'LIKE'
-                ]
-            ])
-            ->addEditAction('admin.cooperators.edit')
-            ->addShowAction('admin.cooperators.show')
-            //->addDeleteAction('admin.administrative-regions.destroy')
-            ->paginate(5)
-            ->search();
-        return view('admin.cooperators.index',[
-            'table' => $this->table,
-        ]);
+        $listCooperators = Cooperator::paginate(5);
+        return view('admin.cooperators.index', \compact('listCooperators'));
     }
 
     /**

@@ -20,8 +20,8 @@
                     <td>{{ $administrativeRegion->id }}</td>
                     <td>{{ $administrativeRegion->description }}</td>
                     <td>
-                        <a href="{{ route('admin.praying-houses.edit', $administrativeRegion->id)}}">{{ __('Edit') }}</a> |
-                        <a href="{{ route('admin.praying-houses.show', $administrativeRegion->id)}}">{{ __('Show') }}</a>
+                        <a href="{{ route('admin.administrative-regions.edit', $administrativeRegion->id)}}">{{ __('Edit') }}</a> |
+                        <a href="{{ route('admin.administrative-regions.show', $administrativeRegion->id)}}">{{ __('Show') }}</a>
                     </td>
                 </tr>
             @endforeach

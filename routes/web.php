@@ -24,14 +24,9 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 
     
     Route::resources([
         'administrative-regions' => 'AdministrativeRegionController',
-    ]);
-    
-    Route::resources([
         'cooperators' => 'CooperatorController',
-    ]);
-
-    Route::resources([
         'praying-houses' => 'PrayingHouseController',
+        'list-casters' => 'ListCasterController',
     ]);
 });
 

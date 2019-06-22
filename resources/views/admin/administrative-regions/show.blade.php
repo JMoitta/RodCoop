@@ -23,7 +23,7 @@
             <li class="list-group-item">
                 <div class="btn-toolbar aling-right float-right">
                     <div class="btn-group ml-2">
-                        <a href="#" class="btn btn-secondary">Lista de Rodízios</a>
+                        <a href="{{ route('admin.list-casters.index')}}" class="btn btn-secondary">Lista de Rodízios</a>
                     </div>
                     <div class="btn-group ml-2">
                         <a href="{{ route('admin.administrative-regions.edit', [$administrativeRegion->id]) }}" class="btn btn-primary">Editar</a>

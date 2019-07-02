@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 'can:admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 'can:admin', 'tenant'])->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });

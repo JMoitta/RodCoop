@@ -16,10 +16,8 @@ class CooperatorTableSeeder extends Seeder
         $administrativeRegions = AdministrativeRegion::all();
 
         foreach($administrativeRegions as $administrativeRegion) {
-            factory(Cooperator::class, 10)->make()->each(function(Cooperator $cooperator) use($administrativeRegion){
-                $cooperator->administrative_region_id = $administrativeRegion->id;
-                $cooperator->save();
-            });
+            \Tenant::setTenant($administrativeRegion);
+            factory(Cooperator::class, 10)->create();
         }
         
     }

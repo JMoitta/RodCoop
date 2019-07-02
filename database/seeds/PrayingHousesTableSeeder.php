@@ -14,6 +14,7 @@ class PrayingHousesTableSeeder extends Seeder
      */
     public function run()
     {
+        \Tenant::setTenant(null);
         $cooperators = Cooperator::all();
 
         foreach($cooperators as $cooperator) {

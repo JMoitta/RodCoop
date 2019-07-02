@@ -2,6 +2,9 @@
 
 namespace App;
 
+
+use App\Tenant\TenantModels;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,6 +12,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+    use TenantModels;
+    
     const ROLE_USER = 1;
     const ROLE_ADMIN = 2;
     const ROLE_ROOT = 3;

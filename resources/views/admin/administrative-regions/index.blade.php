@@ -4,16 +4,16 @@
     <div class="card">
         <div class="card-header">
             <div class="row col">
-                <h3>{{ __('List of Regions Administration') }}</h3>
-                <a class="btn btn-outline-primary ml-2" href="{{ route('admin.administrative-regions.create') }}">{{ __('Create new') }}</a>
+                {{ __('List of Regions Administration') }}
             </div>
         </div>
         <div class="card-body">
-                @if(count($listAdministrativeRegions))
-                <div class="float-right">
-                    {!! $listAdministrativeRegions->appends(['search' => \Request::get('search'),'field_order' => \Request::get('field_order'),'order' =>\Request::get('order')])->links() !!}
-                </div>
-                <table class="table table-striped" id="table-search">
+            <a class="btn btn-outline-primary ml-2" href="{{ route('admin.administrative-regions.create') }}">{{ __('Create new') }}</a>
+            @if(count($listAdministrativeRegions))
+            <div class="float-right">
+                {!! $listAdministrativeRegions->appends(['search' => \Request::get('search'),'field_order' => \Request::get('field_order'),'order' =>\Request::get('order')])->links() !!}
+            </div>
+            <table class="table table-striped" id="table-search">
                     <thead>
                     <tr>
                         <th>ID</th>

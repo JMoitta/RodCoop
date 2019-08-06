@@ -10,6 +10,6 @@
 @endsection
 @section('modal')
     @component('modal.modal', ['title' => __('Warning'), 'formId' => 'formDelete' . $index])
-        {{ __('Are you sure you want to delete an administrative region?') }}
+        {{ $message }}
     @endcomponent
 @endsection

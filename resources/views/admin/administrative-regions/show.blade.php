@@ -6,7 +6,6 @@
             {{ __('Show administrative region') }}
         </div>
         <div class="card-body">
-
             <table class="table table-sm table-borderless">
                 <tbody>
                     <tr>

@@ -25,10 +25,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavHeader">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    @can('admin', App\User::class)
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.administrative-regions.index') }}">{{ __('Administrative regions') }}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.praying-houses.index') }}">{{ __('Houses of prayer') }}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.cooperators.index') }}">{{ __('Cooperators') }}</a></li>
+                    @can('admin')
+                        @can('root')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.administrative-regions.index') }}">{{ __('Administrative regions') }}</a></li>
+                        @endcan
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.praying-houses.index') }}">{{ __('Houses of prayer') }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.cooperators.index') }}">{{ __('Cooperators') }}</a></li>
                     @endcan
                 </ul>
 

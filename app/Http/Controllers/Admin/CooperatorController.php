@@ -53,23 +53,7 @@ class CooperatorController extends Controller
      */
     public function show(Cooperator $cooperator)
     {
-        $this->show
-            ->model($cooperator)
-            ->attributes([
-                [
-                    'label' => 'ID',
-                    'name' => 'id',
-                ],
-                [
-                    'label' => 'Nome',
-                    'name' => 'name',
-                ],
-            ])
-            ->addEditAction('admin.cooperators.edit', ['cooperator' => $cooperator->id])
-            ->addDeleteAction('admin.cooperators.destroy', ['cooperator' => $cooperator->id]);
-        return view('admin.cooperators.show', [
-            'show' => $this->show,
-        ]);
+        return view('admin.cooperators.show', compact('cooperator'));
     }
 
     /**

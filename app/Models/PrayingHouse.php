@@ -22,4 +22,14 @@ class PrayingHouse extends Model
     {
         return $this->belongsTo(Cooperator::class);
     }
+
+    public function setSaturdayAttribute($value)
+    {
+        $this->attributes['saturday'] = strtolower($value) === 'on' ? 1 : 0;
+    }
+    
+    public function setSundayAttribute($value)
+    {
+        $this->attributes['sunday'] = strtolower($value) === 'on' ?  1 : 0;
+    }
 }

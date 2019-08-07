@@ -14,11 +14,11 @@
     <legend class="col-form-legend col">{{ __('Weekend cults')}}</legend>
     <div class="col">
         @component('form._form_check',['field' => 'saturday', 'class' => ''])
-            {{ Form::checkbox('saturday', "1", null, ['class' => 'form-check-input'.($errors->has('saturday')?' is-invalid':'')]) }}
+            {{ Form::checkbox('saturday', null, null, ['class' => 'form-check-input'.($errors->has('saturday')?' is-invalid':'')]) }}
             {{ Form::label('saturday',__('Saturday at 7:30 p.m.'), ['class' => 'form-check-label']) }}
         @endcomponent
         @component('form._form_check',['field' => 'sunday', 'class' => ''])
-            {{ Form::checkbox('sunday', "1", null, ['class' => 'form-check-input'.($errors->has('sunday')?' is-invalid':'')]) }}
+            {{ Form::checkbox('sunday', null, null, ['class' => 'form-check-input'.($errors->has('sunday')?' is-invalid':'')]) }}
             {{ Form::label('sunday',__('Sunday at 7:30 p.m.'), ['class' => 'form-check-label']) }}
         @endcomponent
     </div>

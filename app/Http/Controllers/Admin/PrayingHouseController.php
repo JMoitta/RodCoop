@@ -81,6 +81,7 @@ class PrayingHouseController extends Controller
      */
     public function update(StorePrayingHouse $request, PrayingHouse $prayingHouse)
     {
+        $prayingHouse->saturday = $prayingHouse->sunday = 0; 
         $prayingHouse->fill($request->all());
         $prayingHouse->save();
         return redirect()->route('admin.praying-houses.index');

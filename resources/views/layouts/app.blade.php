@@ -30,6 +30,7 @@
                         @can('root')
                         <li class="nav-item"><a class="nav-link" href="{{ route('admin.administrative-regions.index') }}">{{ __('Administrative regions') }}</a></li>
                         @endcan
+                        <li class="nav-item"><a class="nav-link" href="{{ route('admin.list-casters.index') }}">{{ __('List casters') }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('admin.praying-houses.index') }}">{{ __('Houses of prayer') }}</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('admin.cooperators.index') }}">{{ __('Cooperators') }}</a></li>
                     @endcan

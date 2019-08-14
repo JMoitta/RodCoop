@@ -16,7 +16,8 @@ class ListCasterController extends Controller
     public function index()
     {
         $allListCasters = ListCaster::paginate(5);
-        return view('admin.list-casters.index', \compact('allListCasters'));
+        $administrativeRegion = \Tenant::getTenant();
+        return view('admin.list-casters.index', \compact('allListCasters', 'administrativeRegion'));
     }
 
     /**
@@ -100,6 +101,7 @@ class ListCasterController extends Controller
      */
     public function destroy(ListCaster $listCaster)
     {
-        //
+        $listCaster->delete();
+        return redirect()->route('admin.list-casters.index');
     }
 }

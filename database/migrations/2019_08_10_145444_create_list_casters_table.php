@@ -20,6 +20,7 @@ class CreateListCastersTable extends Migration
             $table->bigInteger('castor_user_id')->unsigned();
             $table->foreign('castor_user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

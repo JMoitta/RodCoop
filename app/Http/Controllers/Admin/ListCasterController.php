@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ListCaster;
+use App\Models\PrayingHouse;
+
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 
 class ListCasterController extends Controller
@@ -41,6 +44,30 @@ class ListCasterController extends Controller
         $listCaster = new listCaster();
         $listCaster->administrative_region_id = \Auth::user()->administrative_region_id;
         $listCaster->castor_user_id = \Auth::user()->id;
+
+        $listPrayingHouse = PrayingHouse::all();
+
+        $matriz = array();
+        $index = 0;
+        foreach ($listPrayingHouse as $prayingHouse) {
+            $vector = array();
+
+            foreach ($listPrayingHouse as $prayingHouse) {
+                array_push($vector, $prayingHouse);
+            }
+
+            for($i = 0; $i < $index; $i++){
+                $prayingHouse = array_shift($vector);
+                array_push($vector, $prayingHouse);
+            }
+            $index++;
+
+            array_push($matriz, $vector);
+        }
+        $test = array();
+
+        $test[0] = 'foi mesmo!';
+        dd($matriz);
         $listCaster->save();
         return redirect()->route('admin.list-casters.index');
     }

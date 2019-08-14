@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 'can:admin', 'tenant'])->group(function () {
+Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 'can:admin', 'tenant', 'bindings'])->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
@@ -28,6 +28,8 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 
         'praying-houses' => 'PrayingHouseController',
         'list-casters' => 'ListCasterController',
     ]);
+
+    Route::get('list-casters/{listCaster}/enable', 'ListCasterController@enable')->name('list-casters.enable');
 });
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');

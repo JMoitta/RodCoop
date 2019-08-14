@@ -15,7 +15,8 @@ class ListCasterController extends Controller
      */
     public function index()
     {
-        //
+        $allListCasters = ListCaster::paginate(5);
+        return view('admin.list-casters.index', \compact('allListCasters'));
     }
 
     /**
@@ -36,7 +37,11 @@ class ListCasterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $listCaster = new listCaster();
+        $listCaster->administrative_region_id = \Auth::user()->administrative_region_id;
+        $listCaster->castor_user_id = \Auth::user()->id;
+        $listCaster->save();
+        return redirect()->route('admin.list-casters.index');
     }
 
     /**
@@ -59,6 +64,20 @@ class ListCasterController extends Controller
     public function edit(ListCaster $listCaster)
     {
         //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\ListCaster  $listCaster
+     * @return \Illuminate\Http\Response
+     */
+    public function enable(ListCaster $listCaster)
+    {
+        $administrativeRegion = \Tenant::getTenant();
+        $administrativeRegion->active_caster_list_id = $listCaster->id;
+        $administrativeRegion->save();
+        return redirect()->route('admin.list-casters.index');
     }
 
     /**

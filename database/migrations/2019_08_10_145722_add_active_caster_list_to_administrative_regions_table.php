@@ -27,6 +27,7 @@ class AddActiveCasterListToAdministrativeRegionsTable extends Migration
     public function down()
     {
         Schema::table('administrative_regions', function (Blueprint $table) {
+            $table->dropForeign('administrative_regions_active_caster_list_id_foreign');
             $table->dropColumn('active_caster_list_id');
         });
     }

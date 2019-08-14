@@ -1,4 +1,4 @@
-<button type="button" class="btn {{ $action['class']}}" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" class="btn {{ $action['class']}}" data-toggle="modal" data-target="#modalDeleteAction{{ $index }}" {{ $attributes }}>
     {{$action['label']}}
 </button>
 @section('formAction')
@@ -9,7 +9,8 @@
     </form>
 @endsection
 @section('modal')
-    @component('modal.modal', ['title' => __('Warning'), 'formId' => 'formDelete' . $index])
+    @parent
+    @component('modal.modal', ['id' => 'modalDeleteAction' . $index, 'title' => __('Warning'), 'formId' => 'formDelete' . $index])
         {{ $message }}
     @endcomponent
 @endsection

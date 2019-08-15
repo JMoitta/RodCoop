@@ -17,7 +17,7 @@ class Cooperator extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'administrative_region_id'
+        'name',
     ];
     
     public function prayingHouse()

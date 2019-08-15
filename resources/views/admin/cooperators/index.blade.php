@@ -17,7 +17,6 @@
                     <tr>
                         <th>ID</th>
                         <th>{{ __('Name') }}</th>
-                        <th>{{ __('Administrative region') }}</th>
                         <th>{{ __('Houses of prayer') }}</th>
                         <th>Ações</th>
                     </tr>
@@ -27,7 +26,6 @@
                         <tr>
                             <td>{{ $cooperator->id }}</td>
                             <td>{{ $cooperator->name }}</td>
-                            <td>{{ $cooperator->administrativeRegion->description }}</td>
                             <td>{{ $cooperator->prayingHouse->locality }}</td>
                             <td>
                                 <a href="{{ route('admin.cooperators.edit', $cooperator->id)}}">{{ __('Edit') }}</a> |

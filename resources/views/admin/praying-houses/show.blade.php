@@ -31,6 +31,7 @@
                 </tbody>
             </table>
             <div class="btn-group ml-2 aling-right float-right">
+                <a href="{{ route('admin.praying-houses.index') }}" class="btn btn-secondary">{{__('Come back')}}</a>
                 <a href="{{ route('admin.praying-houses.edit', [$prayingHouse->id]) }}" class="btn btn-primary">Editar</a>
                 @include('_show.delete_action',[
                     'model' => $prayingHouse,
@@ -40,6 +41,7 @@
                         'parameters' => $prayingHouse->id,
                         'label' => __('Delete'),
                     ],
+                    'attributes' => '',
                     'message' => __('Are you sure you want to delete a prayer house?'),
                     'index' => $prayingHouse->id,
                     ])

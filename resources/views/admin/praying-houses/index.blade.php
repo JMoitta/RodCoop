@@ -16,7 +16,6 @@
                     <tr>
                         <th>ID</th>
                         <th>{{ __('Locality') }}</th>
-                        <th>{{ __('Administrative region') }}</th>
                         <th>{{ __('Weekend cults') }}</th>
                         <th>Ações</th>
                     </tr>
@@ -26,7 +25,6 @@
                         <tr>
                             <td>{{ $prayingHouse->id }}</td>
                             <td>{{ $prayingHouse->locality }}</td>
-                            <td>{{ $prayingHouse->administrativeRegion->description }}</td>
                             <td>
                                 @php
                                   $weekendCults = [];

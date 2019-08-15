@@ -37,6 +37,7 @@
                         'parameters' => $cooperator->id,
                         'label' => __('Delete'),
                     ],
+                    'attributes' => '',
                     'message' => __('Are you sure you want to delete the cooperator?'),
                     'index' => $cooperator->id,
                     ])

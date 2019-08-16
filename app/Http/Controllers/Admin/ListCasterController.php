@@ -49,6 +49,7 @@ class ListCasterController extends Controller
 
         $matriz = array();
         $index = 0;
+        $size = $listPrayingHouse->count();
         foreach ($listPrayingHouse as $prayingHouse) {
             $vector = array();
 
@@ -64,9 +65,29 @@ class ListCasterController extends Controller
 
             array_push($matriz, $vector);
         }
-        $test = array();
 
-        $test[0] = 'foi mesmo!';
+        $index = 0;
+        while($index < $size) {
+            $rand = array_rand($matriz, 1);
+            $aux = $matriz[$rand];
+            $matriz[$rand] = $matriz[$index];
+            $matriz[$index] = $aux;
+            $index++;
+        }
+
+        $index = 0;
+        while($index < $size) {
+            $rand = mt_rand(0, $size - 1);
+            for($j = 0; $j < $size; $j++){
+                $vector = $matriz[$j];
+                $aux = $vector[$rand];
+                $vector[$rand] = $vector[$index];
+                $vector[$index] = $aux;
+                $matriz[$j] = $vector;
+            }
+            $index++;
+        }
+
         dd($matriz);
         $listCaster->save();
         return redirect()->route('admin.list-casters.index');

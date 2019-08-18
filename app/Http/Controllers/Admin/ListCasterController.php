@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
+
 use App\Models\ListCaster;
 use App\Models\PrayingHouse;
+use App\Models\CasterListItem;
 
 use Illuminate\Http\Request;
 
@@ -44,7 +47,8 @@ class ListCasterController extends Controller
         $listCaster = new listCaster();
         $listCaster->administrative_region_id = \Auth::user()->administrative_region_id;
         $listCaster->castor_user_id = \Auth::user()->id;
-
+        $listCaster->save();
+        
         $listPrayingHouse = PrayingHouse::all();
 
         $matriz = array();
@@ -88,9 +92,84 @@ class ListCasterController extends Controller
             $index++;
         }
 
-        dd($matriz);
-        $listCaster->save();
+        $monthTotal = $size - 1;
+        $matrizSaturdayMonth = array();
+        for($i = 0; $i < $monthTotal; $i++) {
+            $vectorSaturdayMonth = array();
+            array_push($matrizSaturdayMonth, $vectorSaturdayMonth);
+        }
+        $matrizCasterList = array();
+		foreach($matriz as $vector) {
+            $vectorCasterList = array();
+            $vectorPrayingHouse = array_shift($vector);
+            $nextMonth = Carbon::now();
+            $nextMonth->addMonth();
+            $i = 0;
+            foreach( $vector as $prayingHouse ) {
+                $firstSunday = $this->dayWeekMonth($nextMonth, Carbon::SUNDAY);
+                $firstSaturday = $this->dayWeekMonth($nextMonth, Carbon::SATURDAY);
+                $vectorSaturdayMonth = $matrizSaturdayMonth[$i];
+                $nextMonth->addMonth();
+                $casterListItem = new CasterListItem();
+                $casterListItem->list_caster_id = $listCaster->id;
+                $casterListItem->praying_house_id = $vectorPrayingHouse->id;
+                $casterListItem->cooperator_id = $prayingHouse->cooperator_craft_id;
+                if($vectorPrayingHouse->sunday == PrayingHouse::SUNDAY) {
+                    $casterListItem->date_caster = $firstSunday;
+                } else {
+                    $casterListItem->date_caster = $firstSaturday;
+                    array_push($vectorSaturdayMonth, $casterListItem);
+                }
+                array_push($vectorCasterList, $casterListItem);
+                $matrizSaturdayMonth[$i] = $vectorSaturdayMonth;
+                $i++;
+            }
+            array_push($matrizCasterList, $vectorCasterList);
+        }
+        
+        $void = 0;
+        for($j = 0; $j < $monthTotal; $j++) {
+            $vectorSaturdayMonth = $matrizSaturdayMonth[$j];
+            while(count($vectorSaturdayMonth) > $void ) {
+                $casterListItem = array_shift($vectorSaturdayMonth);
+                $casterListItem->date_caster = $this->dayWeekMonth($casterListItem->date_caster, Carbon::SATURDAY);
+                $arrayPrayingHouse = array_filter($listPrayingHouse->toArray(), function($prayingHouse) use($casterListItem) {
+                    return $prayingHouse['cooperator_craft_id'] == $casterListItem->cooperator_id;
+                });
+                $prayingHouse = array_shift($arrayPrayingHouse);
+                for($i = 0; $i < $size; $i++) {
+                    $nextCasterListItem = $matrizCasterList[$i][$j];
+                    if($prayingHouse['id'] == $nextCasterListItem->praying_house_id && $prayingHouse['saturday'] == PrayingHouse::SATURDAY) {
+                        array_push($vectorSaturdayMonth, $nextCasterListItem);
+                    }
+                }
+            }
+            $matrizSaturdayMonth[$j] = $vectorSaturdayMonth;
+        }
+
+        foreach($matrizCasterList as $vectorCasterList){
+            foreach($vectorCasterList as $casterListItem){
+                $casterListItem->save();
+            }
+        }
         return redirect()->route('admin.list-casters.index');
+    }
+
+    /**
+     * Get the first day of the week of the month.
+     *
+     * @param  \Carbon\Carbon  $nextMonth
+     * @param  \Carbon\Carbon  $carbonWeek
+     * @return \Carbon\Carbon
+     */
+    private function dayWeekMonth($nextMonth, $carbonWeek) {
+        $dayWeek = Carbon::create($nextMonth->year, $nextMonth->month, 1)->startOfWeek($carbonWeek);
+        $dayWeek->hour = 19;
+        $dayWeek->minute = 30;
+        if($dayWeek->month < $nextMonth->month) {
+            $dayWeek->addWeek();
+        }
+        return $dayWeek;
     }
 
     /**

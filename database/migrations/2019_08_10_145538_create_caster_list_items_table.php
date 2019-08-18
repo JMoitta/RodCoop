@@ -21,6 +21,8 @@ class CreateCasterListItemsTable extends Migration
             $table->foreign('praying_house_id')->references('id')->on('praying_houses');
             $table->bigInteger('cooperator_id')->unsigned();
             $table->foreign('cooperator_id')->references('id')->on('cooperators');
+            $table->timestamp('date_caster');
+            $table->timestamps();
         });
     }
 

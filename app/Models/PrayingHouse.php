@@ -14,6 +14,9 @@ class PrayingHouse extends Model
      *
      * @var array
      */
+     
+    const SUNDAY = 1;
+    const SATURDAY = 1;
     protected $fillable = [
         'locality', 'saturday', 'sunday', 'address', 'cooperator_craft_id', 'administrative_region_id'
     ];

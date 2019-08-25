@@ -188,7 +188,8 @@ class ListCasterController extends Controller
             ->join('caster_list_items', 'list_casters.id', '=', 'caster_list_items.list_caster_id')
             ->join('praying_houses', 'praying_houses.id', '=', 'caster_list_items.praying_house_id')
             ->join('cooperators', 'cooperators.id', '=', 'caster_list_items.cooperator_id')
-            ->select('caster_list_items.date_caster', 'praying_houses.locality as praying_house', 'cooperators.name as cooperator')
+            ->select('caster_list_items.date_caster','cooperators.id as cooperator_id', 'praying_houses.locality as praying_house',
+                'cooperators.name as cooperator', 'praying_houses.id as praying_houses_id')
             ->where('list_casters.id', '=', $listCaster->id)
             ->orderBy('caster_list_items.date_caster', 'asc')
             ->get();
@@ -197,6 +198,7 @@ class ListCasterController extends Controller
         // dd($casterListItems);
         $listNameCooperator = CooperatorUtil::listNameCooperatorInListCaster($casterListItems);
         $listLocalityPrayingHouse = PrayingHouseUtil::listLocalityPrayingHouseInListCaster($casterListItems);
+        // dd($listNameCooperator);
         return view('admin.list-casters.show', compact('listCaster', 'casterListItemsGroup', 'listNameCooperator', 'listLocalityPrayingHouse'));
     }
 

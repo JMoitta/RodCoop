@@ -7,11 +7,15 @@ use Carbon\Carbon;
 use App\Models\ListCaster;
 use App\Models\PrayingHouse;
 use App\Models\CasterListItem;
+use App\Models\Cooperator;
 
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Admin\Util\CooperatorUtil;
+use App\Http\Controllers\Admin\Util\PrayingHouseUtil;
+ 
 class ListCasterController extends Controller
 {
     /**
@@ -180,7 +184,20 @@ class ListCasterController extends Controller
      */
     public function show(ListCaster $listCaster)
     {
-        //
+        $casterListItems = \DB::table('list_casters')
+            ->join('caster_list_items', 'list_casters.id', '=', 'caster_list_items.list_caster_id')
+            ->join('praying_houses', 'praying_houses.id', '=', 'caster_list_items.praying_house_id')
+            ->join('cooperators', 'cooperators.id', '=', 'caster_list_items.cooperator_id')
+            ->select('caster_list_items.date_caster', 'praying_houses.locality as praying_house', 'cooperators.name as cooperator')
+            ->where('list_casters.id', '=', $listCaster->id)
+            ->orderBy('caster_list_items.date_caster', 'asc')
+            ->get();
+        
+        $casterListItemsGroup = collect($casterListItems)->groupBy('praying_house');
+        // dd($casterListItems);
+        $listNameCooperator = CooperatorUtil::listNameCooperatorInListCaster($casterListItems);
+        $listLocalityPrayingHouse = PrayingHouseUtil::listLocalityPrayingHouseInListCaster($casterListItems);
+        return view('admin.list-casters.show', compact('listCaster', 'casterListItemsGroup', 'listNameCooperator', 'listLocalityPrayingHouse'));
     }
 
     /**
@@ -230,5 +247,10 @@ class ListCasterController extends Controller
     {
         $listCaster->delete();
         return redirect()->route('admin.list-casters.index');
+    }
+
+    public function cooperator(ListCaster $listCaster, Cooperator $cooperator)
+    {
+        dd($listCaster, $cooperator);
     }
 }

@@ -30,6 +30,8 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 
     ]);
 
     Route::get('list-casters/{listCaster}/enable', 'ListCasterController@enable')->name('list-casters.enable');
+    Route::get('list-casters/{listCaster}/cooperator/{cooperator}', 'ListCasterController@cooperator')->name('list-casters.cooperator');
+    Route::get('list-casters/{listCaster}/praying-house/{prayingHouse}', 'ListCasterController@prayingHouse')->name('list-casters.praying-house');
 });
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');

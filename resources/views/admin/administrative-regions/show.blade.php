@@ -29,6 +29,7 @@
                         'parameters' => $administrativeRegion->id,
                         'label' => __('Delete'),
                     ],
+                    'attributes' => '',
                     'message' => __('Are you sure you want to delete an administrative region?'),
                     'index' => $administrativeRegion->id,
                     ])

@@ -6,13 +6,17 @@ class CooperatorUtil
 {
     public static function listNameCooperatorInListCaster($casterListItems) {
         $listName = collect();
+        // dd($casterListItems);
         collect($casterListItems)->each(function ($item, $key) use ($listName) {
             if($listName->contains('cooperator', '=', $item->cooperator) == false) {
-                $listName->push(['cooperator' => $item->cooperator]);
+                $listName->push(['cooperator' => $item->cooperator, 'cooperator_id' => $item->cooperator_id]);
             }
         });
-        return $listName->sortBy('cooperator')->map(function ($item) {
-            return $item['cooperator'];
-        });
+        $listNameCooperator = array();
+        foreach($listName as $item){
+            $listNameCooperator[intval($item['cooperator_id'])] = $item['cooperator'];
+        }
+        
+        return $listNameCooperator;
     }
 }

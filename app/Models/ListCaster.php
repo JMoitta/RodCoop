@@ -22,4 +22,9 @@ class ListCaster extends Model
     public function castorUser(){
         return $this->belongsTo(User::class);
     }
+
+    public function casterListItems()
+    {
+        return $this->hasMany(CasterListItem::class);
+    }
 }

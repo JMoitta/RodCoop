@@ -25,7 +25,6 @@ class UpdateCooperator extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'administrative_region_id' => 'required|exists:administrative_regions,id'
         ];
     }
 }

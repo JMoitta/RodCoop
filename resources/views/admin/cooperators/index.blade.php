@@ -26,7 +26,11 @@
                         <tr>
                             <td>{{ $cooperator->id }}</td>
                             <td>{{ $cooperator->name }}</td>
-                            <td>{{ $cooperator->prayingHouse->locality }}</td>
+                            @isset( $cooperator->prayingHouse )
+                                <td>{{ $cooperator->prayingHouse->locality }}</td>
+                            @else
+                                <td> - </td>
+                            @endisset
                             <td>
                                 <a href="{{ route('admin.cooperators.edit', $cooperator->id)}}">{{ __('Edit') }}</a> |
                                 <a href="{{ route('admin.cooperators.show', $cooperator->id)}}">{{ __('Show') }}</a>

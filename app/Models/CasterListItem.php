@@ -11,5 +11,19 @@ class CasterListItem extends Model
      *
      * @var array
      */
+    
+    const SUNDAY = 'Sunday';
+    const SATURDAY = 'Saturday';
+
     protected $fillable = [''];
+
+    public function prayingHouse()
+    {
+        return $this->belongsTo(PrayingHouse::class);
+    }
+
+    public function cooperator()
+    {
+        return $this->belongsTo(Cooperator::class);
+    }
 }

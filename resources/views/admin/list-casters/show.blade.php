@@ -8,28 +8,28 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <form>
+                    {{ Form::open(['route' => ['admin.list-casters.cooperator', $listCaster->id]]) }}
                         <div class="form-row">
                             <div class="col">
                                 {{ Form::select('cooperator_id', $listNameCooperator, null, ['class' => 'custom-select']) }}
                             </div>
                             <div class="col">
-                                <a class="btn btn-primary" href="{{ route('admin.list-casters.index')}}">Rodízio do Cooperador</a>
+                                <button class="btn btn-primary" type="submit">Rodízio do Cooperador</button>
                             </div>
                         </div>
-                    </form>
+                    {{ Form::close() }}
                 </div>
                 <div class="col">
-                    <form>
+                    {{ Form::open(['route' => ['admin.list-casters.praying-house', $listCaster->id]]) }}
                         <div class="form-row">
                             <div class="col">
-                                {{ Form::select('cooperator_id', $listLocalityPrayingHouse, null, ['class' => 'custom-select']) }}
+                                {{ Form::select('praying_house_id', $listLocalityPrayingHouse, null, ['class' => 'custom-select']) }}
                             </div>
                             <div class="col">
-                                <a class="btn btn-primary" href="{{ 'sdf' }}">Rodízio da Casa de oração</a>
+                                <button class="btn btn-primary" type="submit">Rodízio da Casa de oração</a>
                             </div>
                         </div>
-                    </form>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>

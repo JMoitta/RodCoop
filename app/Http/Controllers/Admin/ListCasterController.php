@@ -251,8 +251,17 @@ class ListCasterController extends Controller
         return redirect()->route('admin.list-casters.index');
     }
 
-    public function cooperator(ListCaster $listCaster, Cooperator $cooperator)
+    public function cooperator(ListCaster $listCaster, Request $request)
     {
-        dd($listCaster, $cooperator);
+        $cooperator = Cooperator::find($request->input('cooperator_id'));
+        $casterListItems = CasterListItem::where('list_caster_id', '=', $listCaster->id)->where('cooperator_id', '=', $cooperator->id)->get();
+        dd($listCaster, $cooperator, $casterListItems);
+    }
+
+    public function prayingHouse(ListCaster $listCaster, Request $request) 
+    {
+        $prayingHouse = PrayingHouse::find($request->input('praying_house_id'));
+        $casterListItems = CasterListItem::where('list_caster_id', '=', $listCaster->id)->where('cooperator_id', '=', $cooperator->id)->get();
+        dd($listCaster, $prayingHouse);
     }
 }

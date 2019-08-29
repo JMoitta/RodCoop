@@ -254,14 +254,20 @@ class ListCasterController extends Controller
     public function cooperator(ListCaster $listCaster, Request $request)
     {
         $cooperator = Cooperator::find($request->input('cooperator_id'));
-        $casterListItems = CasterListItem::where('list_caster_id', '=', $listCaster->id)->where('cooperator_id', '=', $cooperator->id)->get();
-        dd($listCaster, $cooperator, $casterListItems);
+        $casterListItems = CasterListItem::where('list_caster_id', '=', $listCaster->id)
+            ->where('cooperator_id', '=', $cooperator->id)
+            ->orderBy('date_caster', 'asc')->get();
+        // dd($listCaster, $cooperator, $casterListItems);
+        return view('admin.list-casters.cooperator', compact('listCaster', 'cooperator', 'casterListItems'));
     }
 
     public function prayingHouse(ListCaster $listCaster, Request $request) 
     {
         $prayingHouse = PrayingHouse::find($request->input('praying_house_id'));
-        $casterListItems = CasterListItem::where('list_caster_id', '=', $listCaster->id)->where('cooperator_id', '=', $cooperator->id)->get();
-        dd($listCaster, $prayingHouse);
+        $casterListItems = CasterListItem::where('list_caster_id', '=', $listCaster->id)
+            ->where('praying_house_id', '=', $prayingHouse->id)
+            ->orderBy('date_caster', 'asc')->get();
+        dd($listCaster, $prayingHouse, $casterListItems);
+        return view('admin.list-casters.praying-house', compact('listCaster', 'prayingHouse', 'casterListItems'));
     }
 }

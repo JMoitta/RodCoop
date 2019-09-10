@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    {{ Form::open(['route' => 'welcome.cooperators']) }}
+                    {{ Form::open(['route' => 'welcome.cooperator']) }}
                         <div class="form-group">
                             <label for="cooperator_id">{{ __('Cooperator')}}</label>
                             {{ Form::select('cooperator_id', $listCooperator , null, ['class' => 'custom-select']) }}
@@ -19,10 +19,10 @@
                     {{ Form::close() }}
                 </div>
                 <div class="col">
-                    {{ Form::open(['route' => 'welcome.administrative-region']) }}
+                    {{ Form::open(['route' => 'welcome.praying-house']) }}
                         <div class="form-group">
-                            <label for="administrative_region_id">{{ __('Praying house')}}</label>
-                            {{ Form::select('administrative_region_id', $listPrayingHouse , null, ['class' => 'custom-select']) }}
+                            <label for="praying_house_id">{{ __('Praying house')}}</label>
+                            {{ Form::select('praying_house_id', $listPrayingHouse , null, ['class' => 'custom-select']) }}
                         </div>
                         <div class="btn-group" role="group">
                             <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>

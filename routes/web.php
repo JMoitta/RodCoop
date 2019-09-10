@@ -14,7 +14,7 @@
 Route::get('/', 'WelcomeController@index');
 
 Route::post('/administrative-regions', 'WelcomeController@administrativeRegion')->name('welcome.administrative-region');
-Route::post('/cooperators', 'WelcomeController@cooperators')->name('welcome.cooperators');
+Route::post('/cooperator', 'WelcomeController@cooperators')->name('welcome.cooperators');
 Route::post('/praying-houses', 'WelcomeController@prayingHouses')->name('welcome.praying-houses');
 
 Auth::routes(['verify' => true]);

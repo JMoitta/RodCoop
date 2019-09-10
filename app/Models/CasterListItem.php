@@ -17,6 +17,10 @@ class CasterListItem extends Model
 
     protected $fillable = [''];
 
+    protected $dates = [
+        'date_caster',
+    ];
+
     public function prayingHouse()
     {
         return $this->belongsTo(PrayingHouse::class);

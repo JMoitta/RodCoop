@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\AdministrativeRegion;
 use App\Models\Cooperator;
 use App\Models\PrayingHouse;
+use App\Models\CasterListItem;
+
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -30,7 +33,8 @@ class WelcomeController extends Controller
      * 
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function administrativeRegion(Request $request){
+    public function administrativeRegion(Request $request)
+    {
         $administrativeRegion = AdministrativeRegion::find($request->input('administrative_region_id'));
         $allCooperator = \DB::table('cooperators')->select('cooperators.id', 'cooperators.name')
             ->join('caster_list_items', 'cooperators.id', '=', 'caster_list_items.cooperator_id')
@@ -45,6 +49,27 @@ class WelcomeController extends Controller
         foreach ($allPrayingHouse as $prayingHouse) {
             $listPrayingHouse[$prayingHouse->id] = $prayingHouse->locality;
         }
-        return view('administrative-region', compact('listCooperator', 'listPrayingHouse'));
+        return view('administrative-region', compact('listCooperator', 'listPrayingHouse', 'administrativeRegion'));
+    }
+
+    public function cooperators(Request $request) 
+    {
+        $cooperator = Cooperator::find($request->input('cooperator_id'));
+        $administrativeRegion = $cooperator->administrativeRegion;
+        $casterListItems = CasterListItem::where('list_caster_id', '=', $administrativeRegion->active_caster_list_id)
+            ->where('cooperator_id', '=', $cooperator->id)
+            ->orderBy('date_caster', 'asc')->get();
+        $carbon = new Carbon();
+        $currentCaster = $casterListItems->filter(function ($casterListItem, $key) use($carbon) {
+            return $carbon->year <= $casterListItem->date_caster->year
+                && ( $carbon->month < $casterListItem->date_caster->month
+                || ($carbon->month == $casterListItem->date_caster->month
+                && $carbon->day <= $casterListItem->date_caster->day ));
+        })->first();
+        return view('cooperator', compact('cooperator', 'currentCaster', 'casterListItems'));
+    }
+    public function prayingHouses(Request $request) 
+    {
+        
     }
 }

@@ -52,7 +52,7 @@ class WelcomeController extends Controller
         return view('administrative-region', compact('listCooperator', 'listPrayingHouse', 'administrativeRegion'));
     }
 
-    public function cooperators(Request $request) 
+    public function cooperator(Request $request) 
     {
         $cooperator = Cooperator::find($request->input('cooperator_id'));
         $administrativeRegion = $cooperator->administrativeRegion;
@@ -68,8 +68,21 @@ class WelcomeController extends Controller
         })->first();
         return view('cooperator', compact('cooperator', 'currentCaster', 'casterListItems'));
     }
-    public function prayingHouses(Request $request) 
+
+    public function prayingHouse(Request $request) 
     {
-        
+        $prayingHouse = PrayingHouse::find($request->input('praying_house_id'));
+        $administrativeRegion = $prayingHouse->administrativeRegion;
+        $casterListItems = CasterListItem::where('list_caster_id', '=', $administrativeRegion->active_caster_list_id)
+            ->where('praying_house_id', '=', $prayingHouse->id)
+            ->orderBy('date_caster', 'asc')->get();
+        $carbon = new Carbon();
+        $currentCaster = $casterListItems->filter(function ($casterListItem, $key) use($carbon) {
+            return $carbon->year <= $casterListItem->date_caster->year
+                && ( $carbon->month < $casterListItem->date_caster->month
+                || ($carbon->month == $casterListItem->date_caster->month
+                && $carbon->day <= $casterListItem->date_caster->day ));
+        })->first();
+        return view('praying-house', compact('prayingHouse', 'currentCaster', 'casterListItems'));
     }
 }

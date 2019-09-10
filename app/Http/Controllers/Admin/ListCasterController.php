@@ -257,8 +257,14 @@ class ListCasterController extends Controller
         $casterListItems = CasterListItem::where('list_caster_id', '=', $listCaster->id)
             ->where('cooperator_id', '=', $cooperator->id)
             ->orderBy('date_caster', 'asc')->get();
-        // dd($listCaster, $cooperator, $casterListItems);
-        return view('admin.list-casters.cooperator', compact('listCaster', 'cooperator', 'casterListItems'));
+        $carbon = new Carbon();
+        $currentCaster = $casterListItems->filter(function ($casterListItem, $key) use($carbon) {
+            return $carbon->year <= $casterListItem->date_caster->year
+                && ( $carbon->month < $casterListItem->date_caster->month
+                || ($carbon->month == $casterListItem->date_caster->month
+                && $carbon->day <= $casterListItem->date_caster->day ));
+        })->first();
+        return view('admin.list-casters.cooperator', compact('listCaster', 'cooperator', 'currentCaster', 'casterListItems'));
     }
 
     public function prayingHouse(ListCaster $listCaster, Request $request) 
@@ -267,7 +273,13 @@ class ListCasterController extends Controller
         $casterListItems = CasterListItem::where('list_caster_id', '=', $listCaster->id)
             ->where('praying_house_id', '=', $prayingHouse->id)
             ->orderBy('date_caster', 'asc')->get();
-        dd($listCaster, $prayingHouse, $casterListItems);
-        return view('admin.list-casters.praying-house', compact('listCaster', 'prayingHouse', 'casterListItems'));
+        $carbon = new Carbon();
+        $currentCaster = $casterListItems->filter(function ($casterListItem, $key) use($carbon) {
+            return $carbon->year <= $casterListItem->date_caster->year
+                && ( $carbon->month < $casterListItem->date_caster->month
+                || ($carbon->month == $casterListItem->date_caster->month
+                && $carbon->day <= $casterListItem->date_caster->day ));
+        })->first();
+        return view('admin.list-casters.praying-house', compact('listCaster', 'prayingHouse', 'currentCaster', 'casterListItems'));
     }
 }

@@ -20,10 +20,10 @@ Route::post('/praying-house', 'WelcomeController@prayingHouse')->name('welcome.p
 Auth::routes(['verify' => true]);
 
 Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 'can:admin', 'tenant', 'bindings'])->group(function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    });
-    
+    Route::get('/', 'DashBoardController@index');
+    Route::get('/users/{user}', 'UserController@edit')->name('users.edit');
+    Route::post('/users', 'UserController@update')->name('users.update');
+
     Route::resources([
         'administrative-regions' => 'AdministrativeRegionController',
         'cooperators' => 'CooperatorController',

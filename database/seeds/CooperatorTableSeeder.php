@@ -17,7 +17,7 @@ class CooperatorTableSeeder extends Seeder
 
         foreach($administrativeRegions as $administrativeRegion) {
             \Tenant::setTenant($administrativeRegion);
-            factory(Cooperator::class, 10)->create();
+            factory(Cooperator::class, 25)->create();
         }
         
     }

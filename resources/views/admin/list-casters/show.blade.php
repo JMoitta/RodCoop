@@ -56,7 +56,7 @@
                     <tbody>
                     @foreach($casterListItemsGroup as $prayingHouse => $casterListItems)
                         <tr>
-                            <td class="font-weight-bold">{{ $prayingHouse }}</td>
+                            <td class="font-weight-bold">{{ $casterListItems[0]->praying_house }}</td>
                             @foreach ($casterListItems as $casterListItem)
                                 <td class="border-left">{{ $casterListItem->cooperator}}</td>
                                 <td>

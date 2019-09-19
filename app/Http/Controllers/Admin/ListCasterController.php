@@ -103,6 +103,8 @@ class ListCasterController extends Controller
             array_push($matrizSaturdayMonth, $vectorSaturdayMonth);
         }
         $matrizCasterList = array();
+
+        // Define culto no domingo
 		foreach($matriz as $vector) {
             $vectorCasterList = array();
             $vectorPrayingHouse = array_shift($vector);
@@ -131,11 +133,14 @@ class ListCasterController extends Controller
             array_push($matrizCasterList, $vectorCasterList);
         }
         
+        // Define culto sabado
         $void = 0;
         for($j = 0; $j < $monthTotal; $j++) {
             $vectorSaturdayMonth = $matrizSaturdayMonth[$j];
+            $alteredSaturdayVector = array();
             while(count($vectorSaturdayMonth) > $void ) {
                 $casterListItem = array_shift($vectorSaturdayMonth);
+                array_push($alteredSaturdayVector, $casterListItem);
                 $casterListItem->date_caster = $this->dayWeekMonth($casterListItem->date_caster, Carbon::SATURDAY);
                 $arrayPrayingHouse = array_filter($listPrayingHouse->toArray(), function($prayingHouse) use($casterListItem) {
                     return $prayingHouse['cooperator_craft_id'] == $casterListItem->cooperator_id;
@@ -143,7 +148,9 @@ class ListCasterController extends Controller
                 $prayingHouse = array_shift($arrayPrayingHouse);
                 for($i = 0; $i < $size; $i++) {
                     $nextCasterListItem = $matrizCasterList[$i][$j];
-                    if($prayingHouse['id'] == $nextCasterListItem->praying_house_id && $prayingHouse['saturday'] == PrayingHouse::SATURDAY) {
+                    if($prayingHouse['id'] == $nextCasterListItem->praying_house_id
+                        && $prayingHouse['saturday'] == PrayingHouse::SATURDAY
+                        && !in_array($nextCasterListItem, $alteredSaturdayVector, TRUE)) {
                         array_push($vectorSaturdayMonth, $nextCasterListItem);
                     }
                 }
@@ -185,20 +192,20 @@ class ListCasterController extends Controller
     public function show(ListCaster $listCaster)
     {
         $casterListItems = \DB::table('list_casters')
+            ->select('caster_list_items.date_caster','cooperators.id as cooperator_id', 'praying_houses.locality as praying_house',
+                'cooperators.name as cooperator', 'praying_houses.id as praying_houses_id')
             ->join('caster_list_items', 'list_casters.id', '=', 'caster_list_items.list_caster_id')
             ->join('praying_houses', 'praying_houses.id', '=', 'caster_list_items.praying_house_id')
             ->join('cooperators', 'cooperators.id', '=', 'caster_list_items.cooperator_id')
-            ->select('caster_list_items.date_caster','cooperators.id as cooperator_id', 'praying_houses.locality as praying_house',
-                'cooperators.name as cooperator', 'praying_houses.id as praying_houses_id')
             ->where('list_casters.id', '=', $listCaster->id)
             ->orderBy('caster_list_items.date_caster', 'asc')
             ->get();
         
-        $casterListItemsGroup = collect($casterListItems)->groupBy('praying_house');
+        $casterListItemsGroup = collect($casterListItems)->groupBy('praying_houses_id');
         // dd($casterListItems);
         $listNameCooperator = CooperatorUtil::listNameCooperatorInListCaster($casterListItems);
         $listLocalityPrayingHouse = PrayingHouseUtil::listLocalityPrayingHouseInListCaster($casterListItems);
-        // dd($listNameCooperator);
+        // dd($casterListItemsGroup);
         return view('admin.list-casters.show', compact('listCaster', 'casterListItemsGroup', 'listNameCooperator', 'listLocalityPrayingHouse'));
     }
 

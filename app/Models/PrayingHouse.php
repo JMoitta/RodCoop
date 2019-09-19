@@ -21,6 +21,11 @@ class PrayingHouse extends Model
         'locality', 'saturday', 'sunday', 'address', 'cooperator_craft_id', 'administrative_region_id'
     ];
 
+    protected $casts = [
+        'sunday' => 'boolean',
+        'saturday' => 'boolean',
+    ];
+
     public function cooperatorCraft()
     {
         return $this->belongsTo(Cooperator::class);

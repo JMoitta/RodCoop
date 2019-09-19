@@ -27,6 +27,7 @@ class AddAdministrativeRegionIdToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_administrative_region_id_foreign');
             $table->dropColumn('administrative_region_id');
         });
     }

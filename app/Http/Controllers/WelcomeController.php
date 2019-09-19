@@ -44,7 +44,10 @@ class WelcomeController extends Controller
         foreach ($allCooperator as $cooperator) {
             $listCooperator[$cooperator->id] = $cooperator->name;
         }
-        $allPrayingHouse = PrayingHouse::where('administrative_region_id', '=', $request->input('administrative_region_id'))->get();
+        $allPrayingHouse = \DB::table('praying_houses')->select('praying_houses.id', 'praying_houses.locality')
+            ->join('caster_list_items', 'praying_houses.id', '=', 'caster_list_items.praying_house_id')
+            ->where('list_caster_id', '=', $administrativeRegion->active_caster_list_id)
+            ->where('administrative_region_id', '=', $request->input('administrative_region_id'))->get();
         $listPrayingHouse = array();
         foreach ($allPrayingHouse as $prayingHouse) {
             $listPrayingHouse[$prayingHouse->id] = $prayingHouse->locality;

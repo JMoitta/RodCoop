@@ -5,8 +5,8 @@
     </div>
 @endcomponent
 @component('form._form_group',['field' => 'administrative_region_id', 'classes' => 'row'])
-{{ Form::label('name',__('Administrative region'),['class' => 'col-sm-2']) }}
+    {{ Form::label('name',__('Administrative region'),['class' => 'col-sm-2']) }}
     <div class="col-sm-10">
-        {{ Form::select('cooperator_craft_id', $listAdministrativeRegion , null, ['class' => 'form-control'.($errors->has('cooperator_craft_id')?' is-invalid':'')]) }}
+        {{ Form::select('administrative_region_id', $listAdministrativeRegion , null, ['class' => 'custom-select'.($errors->has('administrative_region_id')?' is-invalid':'')]) }}
     </div>
 @endcomponent

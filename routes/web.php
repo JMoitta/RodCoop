@@ -20,15 +20,17 @@ Route::post('/praying-house', 'WelcomeController@prayingHouse')->name('welcome.p
 Auth::routes(['verify' => true]);
 
 Route::prefix('admin')->name('admin.')->namespace('Admin')->middleware(['auth', 'can:admin', 'tenant', 'bindings'])->group(function () {
-    Route::get('/', 'DashBoardController@index');
-    Route::get('/users/{user}', 'UserController@edit')->name('users.edit');
-    Route::post('/users', 'UserController@update')->name('users.update');
+    Route::get('/', 'DashBoardController@index')->name('index');
+    Route::prefix('/users')->middleware(['can:root'])->group(function () {
+        Route::get('/{id}', 'UserController@edit')->name('users.edit');
+        Route::put('/{id}', 'UserController@update')->name('users.update');
+    });
 
     Route::resources([
         'administrative-regions' => 'AdministrativeRegionController',
-        'cooperators' => 'CooperatorController',
-        'praying-houses' => 'PrayingHouseController',
-        'list-casters' => 'ListCasterController',
+        'cooperators'            => 'CooperatorController',
+        'praying-houses'         => 'PrayingHouseController',
+        'list-casters'           => 'ListCasterController',
     ]);
 
     Route::get('list-casters/{listCaster}/enable', 'ListCasterController@enable')->name('list-casters.enable');
